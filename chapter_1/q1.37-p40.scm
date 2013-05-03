@@ -1,18 +1,24 @@
-;;fixed point
-(define tolerance 0.00001)
 
-(define (fixed-point f first-guess)
-  (define (close-enough? v1 v2)
-    (< (abs (- v1 v2)) tolerance))
-  (define (try guess)
-    (let ((next (f guess)))
-      (if (close-enough? guess next)
-	  next
-	  (try next))))
-  (try first-guess))
+;;fn = n / (d + fn+1)
 
+(define (cont-frac n d k)
+  (let loop ((k k)
+	     (result (/ (n k) (d k))))
+    (let ((-1k (- k 1)))
+      (if (= k 1)
+	  result
+	  (loop -1k
+		(/ (n -1k) (+ (d -1k)
+			      result)))))))
 
+(define (cont-frac n d k)
+  (let loop ((i 1))
+    (if (= i k)
+	(/ (n i) (d i))
+	(/ (n i) (+ (d i)
+		    (loop (+ i 1)))))))
 
+(cont-frac (lambda (i) 1.0)
+	   (lambda (i) 1.0)
+	   10)
 
-(define fai (fixed-point (lambda (x) (+ 1 (/ 1 x)))
-	     1.0))

@@ -45,7 +45,6 @@
 
 (mul-interval (make-interval -3 -1)
 	      (make-interval 1 3))
-
 (mul-interval (make-interval -3 -1)
 	      (make-interval -5 -3))
 
