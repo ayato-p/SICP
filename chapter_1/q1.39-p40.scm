@@ -1,0 +1,15 @@
+(define (cont-frac n d k)
+  (let loop ((k k)
+	     (result (/ (n k) (d k))))
+    (let ((-1k (- k 1)))
+      (if (= k 1)
+	  result
+	  (loop -1k
+		(/ (n -1k) (+ (d -1k)
+			      result)))))))
+(define (tan-cf x k)
+  (cont-frac (lambda (i)
+	       (if (= i 1) x (- (* x x))))
+	     (lambda (i)
+	       (- (* i 2) 1))
+	     k))
