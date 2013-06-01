@@ -42,7 +42,3 @@
 				   (make-point 10 10)))
 
 (print-point (midpoint-segment hoge-segment))
-
-
-
-

@@ -18,3 +18,24 @@
 (define (newton-transform g)
   (lambda (x)
     (- x (/ (g x) ((deriv g) x)))))
+
+(define (newton-method g guess)
+  (fixed-point (newton-transform g) guess))
+
+(define (square x)
+  (* x x))
+(define (cube x)
+  (* x x x))
+
+(define (cubic a b c)
+  (lambda (x)
+    (+ (cube x)
+       (* a (square x))
+       (* b x)
+       c)))
+
+
+;;test
+(let ((a (newton-method (cubic 2 3 4) 1.0)))
+  (inexact->exact (+ (cube a) (* 2 (square a)) (* 3 a) 4)))
+
