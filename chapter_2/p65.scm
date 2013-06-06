@@ -1,0 +1,21 @@
+(add-load-path "/Users/ayato_p/Programming/SICP/lib")
+(use sicp.util)
+
+;;conventional interfaces
+(define (sum-odd-square tree)
+  (cond ((null? tree) 0)
+	((not (pair? tree))
+	 (if (odd? tree) (square tree) 0))
+	(else (+ (sum-odd-square (car tree))
+		 (sum-odd-square (cdr tree))))))
+
+(define (even-fibs n)
+  (define (next k)
+    (if (> k n)
+	'()
+	(let ((f (fib k)))
+	  (if (even? f)
+	      (cons f (next (+ k 1)))
+	      (next (+ k 1))))))
+  (next 0))
+(even-fibs 10)
