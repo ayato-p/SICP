@@ -1,3 +1,6 @@
+(add-load-path "/User/ayato_p/Programming/SICP/lib")
+(use sicp.util)
+
 (define (map p sequence)
   (accumulate (lambda (x y) (cons (p x) y))
 	      '()
