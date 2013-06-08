@@ -1,4 +1,3 @@
-
 (define (double x)
   (+ x x))
 
@@ -7,9 +6,10 @@
 
 (define (* a b)
   (cond
-   ((zero? b) a)
-   ((even? b) (* (double a) (halve b)))
+   ((zero? b) 0)
+   ((even? b) (double (* a (halve b))))
    (else
     (+ a (* a (- b 1))))))
+
 
 
