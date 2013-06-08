@@ -8,12 +8,11 @@
 		 (count-leaves (cdr t))))))
 
 (define (count-leaves t)
-  (accumulate (lambda (a b) (+ b 1))
+  (accumulate +
 	      0
-	      (map (lambda (x)
-		     )
-		   t)))
-	      
+	      (map (lambda (x) 1)
+		   (enumerate-tree t))))
 
 ;;test
 (count-leaves '((1 2 (3 4))(5 6(7)((8)))))
+(count-leaves '(1 2 3 (4 5 6(7)((((8)))9))))
