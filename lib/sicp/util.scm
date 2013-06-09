@@ -1,7 +1,20 @@
 (define-module sicp.util
-  (export square fib filter accumulate enumerate-interval enumerate-tree))
+  (export prime? square fib filter accumulate enumerate-interval enumerate-tree))
 
 (select-module sicp.util)
+
+(define (prime? n)
+  (define (smallest-divisor n)
+    (find-divisor n 2))
+  (define (find-divisor n test-divisor)
+    (cond
+     ((> (square test-divisor) n) n)
+     ((divides? test-divisor n) test-divisor)
+     (else
+      (find-divisor n (+ test-divisor 1)))))
+  (define (divides? a b)
+    (zero? (modulo b a)))
+  (= n (smallest-divisor n)))
 
 (define (square x)
   (* x x))
