@@ -1,5 +1,5 @@
 (define-module sicp.util
-  (export prime? square fib filter accumulate enumerate-interval enumerate-tree))
+  (export prime? square fib filter accumulate enumerate-interval enumerate-tree flatmap))
 
 (select-module sicp.util)
 
@@ -48,6 +48,9 @@
 	((not (pair? tree)) (list tree))
 	(else (append (enumerate-tree (car tree))
 		      (enumerate-tree (cdr tree))))))
+
+(define (flatmap proc seq)
+  (accumulate append '() (map proc seq)))
 
 (provide "sicp/util")
 

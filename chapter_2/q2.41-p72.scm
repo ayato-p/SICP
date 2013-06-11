@@ -1,4 +1,4 @@
-(add-load-path "/Users/ayato_p/Programming/SICP/lib" )
+(add-load-path "./Programming/SICP/lib" )
 (use sicp.util)
 
 (define (unique-triple n)
